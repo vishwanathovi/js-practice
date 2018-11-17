@@ -32,8 +32,8 @@ while(purchaseAmount<bank_balance){
 
 //Finally, check the amount against your bank account balance to see if you can afford it or not.
 
-alert(`Your bank balance is ${formatAmount(bank_balance)} and your purchase amount is ${formatAmount(withTax(purchaseAmount))}. \n\nYou ${bank_balance>(withTax(purchaseAmount))? "can": "can not"} afford it
-You bought ${phoneCount} phones and ${accessoriesCount} accessories`)
+// alert(`Your bank balance is ${formatAmount(bank_balance)} and your purchase amount is ${formatAmount(withTax(purchaseAmount))}. \n\nYou ${bank_balance>(withTax(purchaseAmount))? "can": "can not"} afford it
+// You bought ${phoneCount} phones and ${accessoriesCount} accessories`)
 
 
 // Write a function called calculateTax which takes an argument 'amount' and calculates the tax you need to pay.
@@ -59,9 +59,23 @@ function formatAmount(amount){
 
 // for(i = 1;i<=100; i++){console.log(i%5?i%3?i:"Fizz":i%3?"FizzBuzz":"Buzz")};
 
-for(i=0;i<100;){
-	console.log((++i%5?"":"Fizz")+(i%3?"":"Buzz")||i);
-}
+// for(i=0;i<100;){
+// 	// console.log((++i%5?"":"Fizz")+(i%3?"":"Buzz")||i);
+// }
 
 
+ // Euler 
+
+var n = 8;
+var x = Math.floor((n)/3)+1;
+var x2 = Math.floor((n)/5)+1;
+var x3 = Math.floor((n)/15)+1;
+console.log(x,x2,x3);
+var sumX = ((x *( 0 + (n-(n%3))))//2) + ((x2 *( 0 + (n-(n%5))))//2)- ((x3 *( 0 + (n-(n%15))))/2);
+
+console.log((x *( 0 + (n-(n%3))))/2);
+console.log(((x2 *( 0 + (n-(n%5))))/2));
+console.log(((x3 *( 0 + (n-(n%15))))/2));
+
+console.log(sumX)
 
