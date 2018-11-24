@@ -194,34 +194,89 @@ console.log(finalString)
 
 function userSelectAction(value,action){
   var sumValue=0;
-  if (value==1){return 1} else
-  if (action=="+"){ return sumValue+=userSelectAction(value-1,action) } else
-     { return sumValue*=userSelectAction(value-1,action) }
+  var mulValue=1;
+  var value = Number(value);
+  if (value>25){
+    return "Not allowed. Enter a number below or equal to 25"
+  } else
+  if (action=="+"){ 
+    while(value>0){
+      sumValue+=value;
+      value--;
+    }
+    return sumValue;
+  } else { 
+    while(value>0){
+      mulValue*=value;
+      value--;
+      console.log(value,mulValue)
+    }
+    return mulValue;
+  }
+  
 }
 
-var value = prompt(`To calculate sum or multiplication till "n", please enter n and action \n Eg: 5,+ will give you 1+2+3+4+5 = 15 `,"5,+");
+// var value = prompt(`To calculate sum or multiplication till "n", please enter n and action \n Eg: 5,+ will give you 1+2+3+4+5 = 15 `,"5,+");
 
-var valueNum = value.split(/[1234567890,]/)[2];
-var valueSym = value.split(/[,+*]/)[0];
+// var valueSym = value.split(/[1234567890,]/)[value.split(/[1234567890,]/).length-1];
+// var valueNum = value.split(/[,+*]/)[0];
 
-console.log(valueNum)
-console.log(valueSym)
+// console.log(valueNum)
+// console.log(valueSym)
 
-console.log(userSelectAction(valueNum,valueSym));
+// console.log(userSelectAction(valueNum,valueSym));
 
 // Write a function that returns the largest element in a list.
 
+const largeReturn = (aArray) => {
+  var selectValue = aArray[0];
+  for (var i=1;i<aArray.length-1;i++){
+    selectValue<aArray[i]? selectValue=aArray[i]:selectValue=selectValue;
+  }
+  console.log(selectValue)
+}
+
+largeReturn([0,3,64,33,3,33,122,78])
+
+
 // Write a program that asks the user for a number n and prints the sum of the numbers 1 to n
+
+function nSum(value){
+  var sumValue=0;
+  var value = Number(value);
+  while(value>0){
+    sumValue+=value;
+    value--;
+  }
+  return sumValue;
+}
+
+console.log(nSum(10))
+
 
 // Modify the previous program such that only multiples of 5 or 7 are considered in the sum, e.g. n = 20 (5,7,10,14,15,20) 71
 
+function nSum57(value){
+  var sumValue=0;
+  var value = Number(value);
+  while(value>0){
+    if (value%5==0 || value%7==0){sumValue+=value;}
+    value--;
+  }
+  return sumValue;
+}
+
+console.log(nSum57(10))
+
+
 // Write a program that takes a number under (25) and prints the multiplication table for the number.
 
+// var a = prompt("Enter a number to get it's multiplication table");
 
-
-
-
-// Day 3 assignment
-// Day 4 assignment
-// Article on JS
-// Day 4 content
+if (a<=25){
+for (i=1;i<=10;i++){
+ console.log(`${a} x ${i} = ${a*i}`)
+}
+} else {
+  alert("Number too big. Please enter a number that is less than 25")
+}

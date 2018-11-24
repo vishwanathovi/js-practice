@@ -57,25 +57,40 @@ function formatAmount(amount){
 // and for the multiples of five print “Buzz”. For numbers which 
 // are multiples of both three and five print “FizzBuzz”.
 
-// for(i = 1;i<=100; i++){console.log(i%5?i%3?i:"Fizz":i%3?"FizzBuzz":"Buzz")};
+// for(i = 1;i<=100; i++){
+// 	if (i%3==0 && i%5==0){
+// 		console.log("FizzBuzz")
+// 	} else if (i%3==0){
+// 		console.log("Fizz")
+// 	} else if (i%5==0){
+// 		console.log("Buzz")
+// 	} else {
+// 		console.log(i)
+// 	}
+// };
 
-// for(i=0;i<100;){
-// 	// console.log((++i%5?"":"Fizz")+(i%3?"":"Buzz")||i);
-// }
+
+// for(i = 1;i<=100; i++){
+// 	console.log(i%5==0? i%3==0? "FizzBuzz":"Buzz":i%3==0?"Fizz":i)
+// };
+
+for(i=0;i<100;){
+	 console.log((++i%3?"":"Fizz")+(i%5?"":"Buzz")||i);
+};
 
 
  // Euler 
 
-var n = 8;
-var x = Math.floor((n)/3)+1;
-var x2 = Math.floor((n)/5)+1;
-var x3 = Math.floor((n)/15)+1;
-console.log(x,x2,x3);
-var sumX = ((x *( 0 + (n-(n%3))))//2) + ((x2 *( 0 + (n-(n%5))))//2)- ((x3 *( 0 + (n-(n%15))))/2);
+// var n = 8;
+// var x = Math.floor((n)/3)+1;
+// var x2 = Math.floor((n)/5)+1;
+// var x3 = Math.floor((n)/15)+1;
+// console.log(x,x2,x3);
+// var sumX = ((x *( 0 + (n-(n%3))))//2) + ((x2 *( 0 + (n-(n%5))))//2)- ((x3 *( 0 + (n-(n%15))))/2);
 
-console.log((x *( 0 + (n-(n%3))))/2);
-console.log(((x2 *( 0 + (n-(n%5))))/2));
-console.log(((x3 *( 0 + (n-(n%15))))/2));
+// console.log((x *( 0 + (n-(n%3))))/2);
+// console.log(((x2 *( 0 + (n-(n%5))))/2));
+// console.log(((x3 *( 0 + (n-(n%15))))/2));
 
-console.log(sumX)
+// console.log(sumX)
 

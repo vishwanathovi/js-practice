@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>Book List</title>
+ </head>
+<body>
+
+<h1>My Book List</h1>
+
+
+</body>
+<script>
+	var booksList = [{title: 'The Design of EveryDay Things',
+   author: 'Don Norman',
+   alreadyRead: false
+  },
+  {title: 'The Most Human Human',
+   author: 'Brian Christian',
+   alreadyRead: true
+  }];
+  console.log(booksList)
+
+  for (book of booksList){
+  	var newDiv = document.createElement("p"); 
+
+  	newDiv.textContent = book.title;
+
+		newDiv.insertAdjacentHTML('beforeend', " by ")
+  	newDiv.insertAdjacentHTML('beforeend', book.author)
+
+  	document.body.appendChild(newDiv);
+  }
+
+
+  var newUl = document.createElement("ul"); 
+  document.body.appendChild(newUl);
+  
+  for (book of booksList){
+  	var newLi = document.createElement("li"); 
+  	newLi.textContent = book.title;
+  	if (book.alreadyRead){newLi.setAttribute("style","color:red")}
+  	newUl.appendChild(newLi);
+  }
+
+// Adding an image to all the elements
+
+var bookLinks = ["https://images-na.ssl-images-amazon.com/images/I/410RTQezHYL._SX326_BO1,204,203,200_.jpg","https://images-na.ssl-images-amazon.com/images/I/51aKPFuUy1L._SX324_BO1,204,203,200_.jpg"]
+
+var i =0;
+for (book of booksList){
+	console.log(book.title)
+	book["imageLink"] = bookLinks[i];
+	i+=1;
+}
+
+console.log(booksList)
+
+  for (book of booksList){
+  	var newImg = document.createElement("img"); 
+  	newImg.setAttribute("src", book.imageLink);
+  	document.body.appendChild(newImg);
+  }
+
+var allLi = document.query
+
+
+</script>
+</html>

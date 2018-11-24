@@ -39,7 +39,8 @@ admin = name;
 
 var userName = prompt("Please enter your name") || "Master";
 
-if (userName=="Alice" || userName=="Bob"){alert(`Welcome ${userName}`)}
+if (userName=="Alice" || userName=="Bob"){alert(`Welcome ${userName}`);}
+
 
 
 // Find the error if any (var product cost = 3.45;)

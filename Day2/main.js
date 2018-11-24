@@ -34,7 +34,7 @@
 
 // Output of this alert( alert(1) || 2 || alert(3) );
 
-// Output will be alert 1 and alert 2
+// Output will be alert 1 and alert 2 // output is 2
 
 
 // Create a function which takes two input and (a,b) and display the sum, sub, multiplication, devision of those two numbers.
@@ -133,7 +133,7 @@ console.log(bigOf3(99,45,33))
 
 function numberDisplay(a){
 	switch(a){
-		case 1: return "ONE"; break;
+		case 1: return "ONE"; break; // no need of break in each line
 		case 2: return "TWO"; break;
 		case 3: return "THREE"; break;
 		case 4: return "FOUR"; break;
@@ -213,16 +213,16 @@ console.log(factorial(5))
 
 let simpleMath = { 
    add: function(a,b) {
-       return a+b;
+      return a+b;                           //spaces before return reduced;
    },
    sub: function(a,b) {
-       return a-b;
+      return a-b;
    },
    multiply: function(a,b) {
-       return a*b;
+      return a*b;
    },
    divide: function(a,b) {
-       return a/b;
+      return a/b;
    }
 };
 

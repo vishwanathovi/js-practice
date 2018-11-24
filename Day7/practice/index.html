@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.circle{
+  width: 300px;
+  height: 300px;
+  border:1px solid black;
+  border-radius: 50%;
+  position:relative;
+}
+
+.hand{
+  background-color:black;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform-origin: top center;
+  /*transform:translate(-50%,0%);*/
+}
+
+.hour{
+  height:80px;
+  width:6px;
+}
+
+.minute{
+  height:100px;
+  width:4px;
+}
+
+.second{
+  height:120px;
+  width:2px;
+}
+
+.small-circle{
+	width:15px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: black;
+	position: absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+}
+
+	</style>
+</head>
+<body>
+<div class="circle">
+  <div class="hour hand"></div>
+  <div class="minute hand"></div>
+  <div class="second hand"></div>
+  <div class="small-circle "></div>
+</div>
+	
+</body>
+<script>
+
+function hourUpdator(){
+  var date = new Date;  
+  var hours = date.getHours();
+  
+  var x = document.body.getElementsByClassName("hour");
+
+  var offset = String((hours*30)+180)+"deg";
+  console.log(offset)
+  
+  x[0,0].style.transform = `rotate(${offset})`;
+}
+
+function minutesUpdator(){
+  var date = new Date;  
+  var minutes = date.getMinutes();
+  
+  var x = document.body.getElementsByClassName("minute");
+
+  var offset = String((minutes*6)+180)+"deg";
+  console.log(offset)
+  
+  x[0,0].style.transform = `rotate(${offset})`;
+}
+
+function secondUpdator(){
+  var date = new Date;  
+  var hours = date.getSeconds();
+  
+  var x = document.body.getElementsByClassName("second");
+
+  var offset = String((hours*6)+180)+"deg";
+
+  
+  x[0,0].style.transform = `rotate(${offset})`;
+}
+
+hourUpdator();
+minutesUpdator();
+secondUpdator();
+
+function allCheck(){
+	hourUpdator();
+	minutesUpdator();
+	secondUpdator();
+}
+
+
+setInterval(allCheck, 1000)
+
+</script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Learning the DOM</title>
+  </head>
+
+  <body>
+    <h1>Document Object Model</h1>
+  </body>
+
+  <script type="text/javascript">
+  	var newDiv = document.createElement("p"); 
+  	
+  	newDiv.textContent = "Hello Javascript!";
+
+  	newDiv.insertAdjacentHTML('beforeend', " I love <strong>Javascript</strong>")
+
+  	document.body.appendChild(newDiv);
+
+//  Pushing an UL
+	
+		var newUl = document.createElement("ul"); 
+		li1 = document.createElement("li")
+		li2 = document.createElement("li")
+		li3 = document.createElement("li")
+
+		li1.textContent = "Buy groceries";
+		li2.textContent = "Feed the cat"
+		li3.textContent = "Do laundry"
+
+		newUl.appendChild(li1);
+		newUl.appendChild(li2);
+		newUl.appendChild(li3);
+
+		document.body.appendChild(newUl)
+
+// Pushing a new element
+
+		li4 = document.createElement("li")
+		li4.textContent = "Sleep well";
+
+		newUl.appendChild(li4);
+
+		newUl.removeChild(li3);
+
+  </script>
+
+</html>
