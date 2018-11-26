@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+
+	<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/segment7" type="text/css"/>
+
 	<style type="text/css">
 		.circle{
   width: 300px;
@@ -47,6 +50,22 @@
 	transform: translate(-50%,-50%);
 }
 
+.text-time{
+	font-family: 'Segment7Standard'; 
+	font-size: 50px;
+}
+
+.divider{
+	font-size: 50px;
+}
+
+body{
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-items:center;
+	grid-gap: 20px;
+}
+
 	</style>
 </head>
 <body>
@@ -56,7 +75,13 @@
   <div class="second hand"></div>
   <div class="small-circle "></div>
 </div>
-	
+
+<div class="text-section">
+<span class="text-time hour-text">23</span>
+<span class="divider">:</span><span class="text-time minute-text">52</span>
+<span class="divider">:</span><span class="text-time second-text">31</span>
+</div>
+
 </body>
 <script>
 
@@ -65,6 +90,11 @@ function hourUpdator(){
   var hours = date.getHours();
   
   var x = document.body.getElementsByClassName("hour");
+
+	document.body.getElementsByClassName("hour-text")[0,0].textContent = formattedNumber(hours);
+
+
+  
 
   var offset = String((hours*30)+180)+"deg";
   console.log(offset)
@@ -78,6 +108,8 @@ function minutesUpdator(){
   
   var x = document.body.getElementsByClassName("minute");
 
+  document.body.getElementsByClassName("minute-text")[0,0].textContent = formattedNumber(minutes);
+
   var offset = String((minutes*6)+180)+"deg";
   console.log(offset)
   
@@ -89,6 +121,8 @@ function secondUpdator(){
   var hours = date.getSeconds();
   
   var x = document.body.getElementsByClassName("second");
+
+  document.body.getElementsByClassName("second-text")[0,0].textContent = formattedNumber(hours);
 
   var offset = String((hours*6)+180)+"deg";
 
@@ -108,6 +142,13 @@ function allCheck(){
 
 
 setInterval(allCheck, 1000)
+
+
+//  Other functions 
+
+function formattedNumber(number){
+	return ("0" + number).slice(-2);
+}
 
 </script>
 </html>

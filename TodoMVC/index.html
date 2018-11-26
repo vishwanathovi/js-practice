@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Todo list</title>
+	<link rel="stylesheet" href="assets/stylesheet/main.css">
+
+	<!-- font awesome link -->
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+
+</head>
+<body>
+	<div class="full-board">
+		<h1>Todo list</h1>
+		<form id="input-form" action="" onsubmit="return false;">
+			<input type="text" id="item-input">
+			<button id="item-submit">Add</button>
+		</form>
+		<br><br>
+		<div class="item-list">
+			<div class="item" id="1">
+				<i class="far fa-circle"></i>
+				<div  class="item-text">Read 1984</div>
+				<i class="fas fa-times"></i>
+			</div>
+			<div class="item" id="2">
+				<i class="far fa-circle"></i>
+				<div  class="item-text">Buy fruits</div>
+				<i class="fas fa-times"></i>
+			</div>
+			<div class="item strike-out" id="3">
+				<i class="far fa-circle"></i>
+				<div  class="item-text ">Call Kiran</div>
+				<i class="fas fa-times"></i>
+			</div>
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="assets/js/main.js"></script>
+</body>
+</html>

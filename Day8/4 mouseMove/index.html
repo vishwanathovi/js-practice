@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cursor assignment</title>
+<style>
+	.parent{
+		border:1px solid black;
+		border-radius: 10px;
+		padding:20px;
+	}
+</style>
+</head>
+<body>
+	<div class="parent">
+		<h1>Move mouse cursor</h1> <h3>0</h3> <h3>0</h3> <h3>0</h3> <h3>0</h3>
+	</div>
+</body>
+<script>
+	document.querySelector(".parent").addEventListener('mousemove',displayMeta);
+
+	function displayMeta(){
+		document.querySelector(".parent").innerHTML = `<h1> Move mouse cursor </h1> <h3> ${event.screenX} </h3> <h3> ${event.screenY} </h3> <h3> ${event.clientX} </h3> <h3> ${event.clientY} </h3>`		
+	}
+
+</script>
+</html>
