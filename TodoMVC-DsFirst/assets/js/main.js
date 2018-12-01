@@ -1,7 +1,8 @@
 // Initializing an empty array for tasks
 
-var itemArray = [{key:"key1",text:"Read 1984",done:false},{key:"key2",text:"Buy fruits",done:false},{key:"key3",text:"Call Kiran",done:true}];
+// var itemArray = [{key:"key1",text:"Read 1984",done:false},{key:"key2",text:"Buy fruits",done:false},{key:"key3",text:"Call Kiran",done:true}];
 
+var itemArray = JSON.parse(localStorage.getItem("itemArray")) || [];
 
 // Global variable to hold the filter value
 
@@ -91,6 +92,8 @@ function addItemFunction(){
 	// Append item text to the html list
 
 	displayItemsFunction();
+
+	localStorage.itemArray = JSON.stringify(itemArray)
 	
 }
 
@@ -107,6 +110,8 @@ function removeItemFunction(element){
 	itemArray = itemArray.filter((item) => item["key"]!=key);
 
 	displayItemsFunction();
+
+	localStorage.itemArray = JSON.stringify(itemArray)
 
 }
 
@@ -127,6 +132,7 @@ function checkItemFunction(element){
 	displayItemsFunction();
 
 	// currentItem.classList.toggle("strike-out")
+	localStorage.itemArray = JSON.stringify(itemArray)
 
 }
 
@@ -172,6 +178,8 @@ function clearCompleted(){
 	itemArray = itemArray.filter(item=>item["done"]==false);
 
 	displayItemsFunction();
+		localStorage.itemArray = JSON.stringify(itemArray)
+
 }
 
 
@@ -202,6 +210,8 @@ function checkAllItems(){
 
 
 	displayItemsFunction();
+		localStorage.itemArray = JSON.stringify(itemArray)
+
 }
 
 
