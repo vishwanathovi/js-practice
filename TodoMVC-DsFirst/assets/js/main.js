@@ -1,43 +1,26 @@
-// Initializing an empty array for tasks
+// Variables //
 
 // var itemArray = [{key:"key1",text:"Read 1984",done:false},{key:"key2",text:"Buy fruits",done:false},{key:"key3",text:"Call Kiran",done:true}];
-
 var itemArray = JSON.parse(localStorage.getItem("itemArray")) || [];
+var filterValue = "all"; // Filter value
 
-// Global variable to hold the filter value
-
-var filterValue = "all";
-
-// Adding item add listener
-
-document.getElementById("item-submit").addEventListener('click',addItemFunction);
 
 displayItemsFunction();
 
-document.querySelector(".item-list").addEventListener('click',allFunctionSelector)
 
-function allFunctionSelector(e){
 
-	// Edit function 
-
+function editOrRemove(e){
 	if (e.target.classList.contains("circle-check")){checkItemFunction(e.target)}
-
-	// Delete function
-
-if (e.target.classList.contains("fa-times")){removeItemFunction(e.target)}
-
+	if (e.target.classList.contains("fa-times")){removeItemFunction(e.target)}
 }
 
 
-// Displaying the current items in the list
+
 
 function displayItemsFunction(){
-
 	document.querySelector(".item-list").innerHTML = "";
 
-	// Displaying all the elements
-
-	for (item of itemArray){
+	for (item of itemArray){ 
 		if (filterValue=="all"){document.querySelector(".item-list").insertAdjacentHTML('afterbegin', `<div id="${item.key}" class="item"><div class="circle-check"></div><div  class="item-text">${item.text}</div><i class="fas fa-times"></i></div>` )}
 			if (filterValue=="active"){ 
 				if(item["done"]==false){document.querySelector(".item-list").insertAdjacentHTML('afterbegin', `<div id="${item.key}" class="item"><div class="circle-check"></div><div  class="item-text">${item.text}</div><i class="fas fa-times"></i></div>` )}
@@ -244,3 +227,8 @@ function getTimeKey(){
 	return date.getTime();
 }
 
+
+// Listeners
+
+document.getElementById("item-submit").addEventListener('click',addItemFunction);
+document.querySelector(".item-list").addEventListener('click',editOrRemove)
