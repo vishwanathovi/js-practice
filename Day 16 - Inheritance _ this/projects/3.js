@@ -1,9 +1,9 @@
-console.log(this.document === document); // Output
+console.log(this.document === document); // Output 
 
 console.log(this === window); //Output
 
 
-var myFunction = function () {
+var myFunction = function() {
   console.log(this);
 };
 myFunction(); // Output
@@ -18,12 +18,12 @@ console.log(f1() === window); //Output
 
 
 
-function foo () {
-	console.log("Simple function call");
-	console.log(this === window); 
+function foo() {
+  console.log("Simple function call");
+  console.log(this === window);
 }
 
-foo();	//Output ??
+foo(); //Output ??
 console.log(this === window) // Output
 
 
@@ -31,25 +31,25 @@ console.log(this === window) // Output
 
 
 // This for IIFE
-(function(){
-	console.log("Anonymous function invocation");
-	console.log(this === window);
+(function() {
+  console.log("Anonymous function invocation");
+  console.log(this === window);
 })(); //Output
 
 
 // This for IIFE in strict mode
-function foo () {
-	'use strict';
-	console.log("Simple function call")
-	console.log(this === window); 
+function foo() {
+  'use strict';
+  console.log("Simple function call")
+  console.log(this === window);
 }
 
-foo();// Output
+foo(); // Output
 
 
 
 var myObject = {};
-myObject.someMethod = function () {
+myObject.someMethod = function() {
   console.log(this);
 };
 myObject.someMethod(); //Value Of This
@@ -59,40 +59,40 @@ myObject.someMethod(); //Value Of This
 // This refers to the New Instance
 
 function Person(fn, ln) {
-	this.first_name = fn;
-	this.last_name = ln;
+  this.first_name = fn;
+  this.last_name = ln;
 
-	this.displayName = function() {
-		console.log(`Name: ${this.first_name} ${this.last_name}`);
-	}
+  this.displayName = function() {
+    console.log(`Name: ${this.first_name} ${this.last_name}`);
+  }
 }
 
 let person = new Person("John", "Reed");
-person.displayName();  // Output
+person.displayName(); // Output
 let person2 = new Person("Paul", "Adams");
-person2.displayName();  // Output
+person2.displayName(); // Output
 
 
 
 //This refers to the invoker Object
-function foo () {
-	'use strict';
-	console.log("Simple function call")
-	console.log(this === window); 
+function foo() {
+  'use strict';
+  console.log("Simple function call")
+  console.log(this === window);
 }
 
 let user = {
-	count: 10,
-	foo: foo,
-	foo1: function() {
-		console.log(this === window);
-	}
+  count: 10,
+  foo: foo,
+  foo1: function() {
+    console.log(this === window);
+  }
 }
 
-user.foo()  // Output
+user.foo() // Output
 let fun1 = user.foo1;
 fun1() // Output ??
-user.foo1()  // Output ??
+user.foo1() // Output ??
 
 
 //this will call apply and bind
@@ -101,7 +101,9 @@ user.foo1()  // Output ??
 this.x = 9;
 var module = {
   x: 81,
-  getX: function() { return this.x; }
+  getX: function() {
+    return this.x;
+  }
 };
 
 module.getX(); // Output ??
@@ -117,12 +119,12 @@ boundGetX(); // Output ??
 
 
 function Person(fn, ln) {
-	this.first_name = fn;
-	this.last_name = ln;
+  this.first_name = fn;
+  this.last_name = ln;
 
-	this.displayName = function() {
-		console.log(`Name: ${this.first_name} ${this.last_name}`);
-	}
+  this.displayName = function() {
+    console.log(`Name: ${this.first_name} ${this.last_name}`);
+  }
 }
 
 let person = new Person("John", "Reed");
