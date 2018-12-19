@@ -85,6 +85,7 @@ header{
 .board{
 	background: lightblue;
 	display: flex;
+	align-items: flex-start;
 	padding:20px;
 	overflow-y: overlay;
 	position: absolute;

@@ -1,15 +1,9 @@
-// class Board {
-//   constructor(name) {
-//     this.Boardname = name;
-//     this.creationDate = creationDate;
-//   }
-// }
-
 class List {
   constructor(name) {
     this.name = name;
     this.cards = [];
   }
+
 }
 
 class Card {
@@ -44,8 +38,8 @@ function renderApp(boardToRender) {
   var boardHTML = "";
   boardHTML += `<div id="${boardToRender.name}" class="board"> 
                   ${renderList(boardToRender)} 
-                  <div class = "list"> + Add a List<div>
-                </div>`;
+                  <div id="list-placeholder" class="list"><div class = "add-list"> + Add a List<div>
+                </div></div>`;
   document.querySelector('main').innerHTML = boardHTML;
 }
 
@@ -55,8 +49,6 @@ function renderList(boardToRender) {
     listHTML += `<div id="${listObj.name}" data-index="${boardToRender.lists.indexOf(listObj)}"  class="list">
                     <div class="list-header">
                       <h2>${listObj.name}</h2>
-                      <div class="add-list"><i class="fas fa-plus"></i>
-                    </div>
                   </div>`;
     for (cardObj of listObj.cards) {
       listHTML += `<div class="card" dataset-index= "${listObj.cards.indexOf(cardObj)}" >${cardObj.text}</div>`;
@@ -69,11 +61,21 @@ function renderList(boardToRender) {
 renderApp(board1)
 
 function showInput(listId) {
-  listNode = document.querySelector(`#${listId}`);
-  addItemPlaceHolderNode = listNode.querySelector(`.add-item`);
+  var listNode = document.querySelector(`#${listId}`);
+  var addItemPlaceHolderNode = listNode.querySelector(`.add-item`);
   var inputField = document.createElement("input");
-  inputField.placeholder = "Add a task";
+  inputField.placeholder = "Add a task 2";
   inputField.id = "add-input";
+  listNode.replaceChild(inputField, addItemPlaceHolderNode);
+  inputField.focus();
+}
+
+function showListInput(listId) {
+  var listNode = document.querySelector(`#${listId}`);
+  var addItemPlaceHolderNode = listNode.querySelector(`.add-list`);
+  var inputField = document.createElement("input");
+  inputField.placeholder = "List name";
+  inputField.id = "add-list-input";
   listNode.replaceChild(inputField, addItemPlaceHolderNode);
   inputField.focus();
 }
@@ -81,15 +83,30 @@ function showInput(listId) {
 function assignSpecificFunction(e) {
   if (e.target.classList.contains('add-item')) {
     showInput(e.target.parentNode.id);
+
+  }
+  if (e.target.classList.contains('add-list')) {
+    showListInput(e.target.parentNode.id);
   }
 }
+
+function assignKeyup(e) {
+  console.log(e.target.id)
+  if (e.target.id == 'add-input') {
+    addAItem(e);
+  }
+  if (e.target.id == 'add-list-input') {
+    addAListItem(e);
+  }
+}
+
 
 function addAItem(e) {
   if (e.keyCode !== 13) {
     return;
   };
-  console.log(e.keyCode)
-  var ele = document.getElementById('add-input')
+
+  var ele = e.target;
   var newText = ele.value;
   if (ele.value == "") {
     renderApp(board1);
@@ -102,5 +119,22 @@ function addAItem(e) {
   renderApp(board1);
 }
 
+function addAListItem(e) {
+  if (e.keyCode !== 13) {
+    return;
+  };
+  console.log(e.keyCode)
+  var ele = document.getElementById('add-list-input')
+  var newText = ele.value;
+  if (ele.value == "") {
+    renderApp(board1);
+    return;
+  }
+  var boardId = ele.parentNode.parentNode.id;
+  var newList = new List(newText);
+  board1.lists.push(newList);
+  renderApp(board1);
+}
+
 document.addEventListener('click', assignSpecificFunction)
-document.addEventListener('keyup', addAItem);
+document.addEventListener('keyup', assignKeyup);
