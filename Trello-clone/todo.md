@@ -25,3 +25,6 @@ Breaking down the problem into subtasks:
  - Create an object for Card, List and Board
  - 
 
+
+define a unique indentifier for each list and item
+

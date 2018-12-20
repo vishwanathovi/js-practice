@@ -3,7 +3,6 @@ class List {
     this.name = name;
     this.cards = [];
   }
-
 }
 
 class Card {
