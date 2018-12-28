@@ -1,3 +1,29 @@
+function generateBoardForm() {
+  var formContent = document.createElement('form');
+  formContent.id = 'board-add-form'
+  formContent.innerHTML = `<input id="board-add-input" type="text" />
+                  <input type="submit"/>`;
+  formContent.style.display = 'none';
+  return formContent;
+}
+
+function handleBoardAdd(main) {
+  var boardInputForm = document.getElementById('board-add-form');
+  var boardInput = boardInputForm.querySelector('#board-add-input');
+  boardInputForm.style.display = 'block';
+  boardInput.focus();
+  boardInputForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (boardInput.value !== "") {
+      var newBoard = new Board(boardInput.value);
+      main.boards.push(newBoard)
+    }
+    boardInput.value = '';
+    main.render();
+  })
+}
+
+
 function generateListForm() {
   var formContent = document.createElement('form');
   formContent.id = 'list-add-form'

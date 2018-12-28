@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Platform Game</title>
+	<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+	<script src="./player.js"></script>
+	<script src="./level.js"></script>
+	<script src="./state.js"></script>
+	<script src="./dom-manipulation.js"></script>
+	<script src="./main.js"></script>
+	<script src="./monster.js"></script>
+	<script src="./lava.js"></script>
+	<script src="./motion.js"></script>
+
+	<script>
+  // let simpleLevel = new Level(simpleLevelPlan);	
+  // let display = new DOMDisplay(document.body, simpleLevel);
+  // display.syncState(State.start(simpleLevel));
+</script>
+<div class="top-menu">
+  <div id="live-left">Lives:</div>
+  <div id="paused"></div>
+</div>
+    <script>
+    runGame(GAME_LEVELS	, DOMDisplay);
+  </script>
+</body>
+</html>

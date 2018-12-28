@@ -4,15 +4,13 @@ class Board {
     this.lists = [];
 
     this.node = document.createElement('div')
-    this.node.className = 'board'
+    this.node.className = 'board';
 
     this.titleNode = document.createElement('h2')
     this.titleNode.textContent = this.title;
-    this.node.appendChild(this.titleNode)
 
     this.listsNode = document.createElement("div");
     this.listsNode.className = "lists"
-    this.node.appendChild(this.listsNode);
 
     this.listPlaceholder = document.createElement('div')
     this.listPlaceholder.className = "list";
@@ -25,21 +23,15 @@ class Board {
   }
   render() {
     var mainDom = document.querySelector('main');
+    mainDom.innerHTML = '';
+    this.node.appendChild(this.titleNode)
+    this.node.appendChild(this.listsNode);
     mainDom.appendChild(this.node);
     this.listPlaceholderText.addEventListener('click', () => {
       handleListAdd(this)
     });
     this.listsNode.innerHTML = '';
     this.lists.forEach(item => this.listsNode.appendChild(item.node))
-    this.listsNode.appendChild(this.listPlaceholder)
+    this.listsNode.appendChild(this.listPlaceholder);
   }
 }
-
-var board1 = new Board('board1')
-board1.render()
-
-
-
-
-﻿
-﻿

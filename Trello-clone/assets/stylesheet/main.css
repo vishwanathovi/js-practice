@@ -60,7 +60,8 @@
    h1{
    	font-size:3em;
    	font-weight: 600;
-   	padding:20px;
+   	padding:0 0 0 20px;
+      margin-bottom:0 !important;
    }
 
    h2{
@@ -77,8 +78,13 @@
    	height: 20vh;
    	width: 100vw;
    	display: grid;
+      grid-template-columns: 1fr auto;
    	align-items:center;
    	background-color:dodgerblue;
+   }
+
+   header button{
+      margin:0 10px 0 0;
    }
 
    /* Board formatting */

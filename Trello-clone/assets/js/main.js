@@ -1,139 +1,110 @@
-class List {
-  constructor(name) {
-    this.name = name;
-    this.cards = [];
+class Main {
+  constructor(title) {
+    this.title = title;
+    this.boards = [];
+
+    this.node = document.createElement('div')
+    this.node.className = 'board board-selector';
+
+    this.titleNode = document.createElement('h2')
+    this.titleNode.textContent = this.title;
+    this.node.appendChild(this.titleNode)
+
+    this.listsNode = document.createElement("div");
+    this.listsNode.className = "lists"
+    this.node.appendChild(this.listsNode);
+
+    this.listPlaceholder = document.createElement('div')
+    this.listPlaceholder.className = "list";
+    this.listPlaceholderText = document.createElement('h5')
+    this.listPlaceholderText.textContent = 'Add a Board';
+    this.listPlaceholder.appendChild(this.listPlaceholderText)
+    this.listsNode.appendChild(this.listPlaceholder)
+    this.listForm = generateBoardForm();
+    this.listPlaceholder.appendChild(this.listForm)
+    this.listPlaceholderText.addEventListener('click', () => {
+      handleBoardAdd(this)
+    });
+  }
+  render() {
+    var mainDom = document.querySelector('main');
+    mainDom.appendChild(this.node);
+    this.listsNode.innerHTML = '';
+    this.boards.forEach(item => {
+      this.boardName = document.createElement('div');
+      this.boardName.className = 'list board-name';
+      this.boardName.appendChild(item.titleNode)
+      this.listsNode.appendChild(this.boardName)
+      item.titleNode.addEventListener('click', () => {
+        item.render();
+      })
+    })
+    this.listsNode.appendChild(this.listPlaceholder)
   }
 }
 
-class Card {
-  constructor(text) {
-    this.text = text;
-  }
-}
+var newMain = new Main('Boards');
+newMain.render();
 
-var board1 = {
-  name: 'board1',
-  lists: [{
-    name: 'list1',
-    cards: [{
-      text: "Hello World! L1C1"
-    }, {
-      text: "Hello World! L1C2"
-    }, {
-      text: "Hello World! L1C3"
-    }, {
-      text: "Hello World! L1C4"
-    }]
-  }, {
-    name: 'list2',
-    cards: [{
-      text: "Hello World! L1C1"
-    }]
-  }]
-}
+document.querySelector('.boards-button').addEventListener('click', () => {
+  newMain.render();
+})
 
 
-function renderApp(boardToRender) {
-  var boardHTML = "";
-  boardHTML += `<div id="${boardToRender.name}" class="board"> 
-                  ${renderList(boardToRender)} 
-                  <div id="list-placeholder" class="list"><div class = "add-list"> + Add a List<div>
-                </div></div>`;
-  document.querySelector('main').innerHTML = boardHTML;
-}
+var array = [
+  [1, 2, 3, 4, 5, 6, 7, 8],
+  [9, 10, 11, 12, 13, 14, 15, 16],
+  [17, 18, 19, 20, 21, 22, 23, 24],
+  [25, 26, 27, 28, 29, 30, 31, 32],
+  [33, 34, 35, 36, 37, 38, 39, 40]
+]
 
-function renderList(boardToRender) {
-  var listHTML = "";
-  for (listObj of boardToRender.lists) {
-    listHTML += `<div id="${listObj.name}" data-index="${boardToRender.lists.indexOf(listObj)}"  class="list">
-                    <div class="list-header">
-                      <h2>${listObj.name}</h2>
-                  </div>`;
-    for (cardObj of listObj.cards) {
-      listHTML += `<div class="card" dataset-index= "${listObj.cards.indexOf(cardObj)}" >${cardObj.text}</div>`;
+function snail(array) {
+  var arrayNew = [];
+  var rowStart = 0;
+  var colStart = 0;
+  var maxRow = array.length;
+  var maxCol = array[0].length;
+  var directions = [
+    [colStart, rowStart, 1, 0],
+    [maxCol - 1, rowStart, 0, 1],
+    [maxCol - 1, maxRow - 1, -1, 0],
+    [colStart, maxRow - 1, 0, -1]
+  ]
+
+  while (rowStart <= maxRow) {
+    if (rowStart == maxRow) break;
+    if (rowStart - maxRow == -1) {
+      directions.splice(1, 3)
     }
-    listHTML += `<div class="add-item"> + Add a item</div></div>`;
+    console.log(directions)
+
+    for (item of directions) {
+      for (let col = item[0], row = item[1]; col < maxCol && row < maxRow && col >= colStart && row >= rowStart; col += item[2], row += item[3]) {
+        arrayNew.push(array[row][col])
+      }
+      if (rowStart - maxRow != -1) {
+        arrayNew.pop()
+      }
+
+    }
+    console.log(arrayNew)
+    colStart++;
+    rowStart++;
+    maxCol--;
+    maxRow--;
+    directions = [
+      [colStart, rowStart, 1, 0],
+      [maxCol - 1, rowStart, 0, 1],
+      [maxCol - 1, maxRow - 1, -1, 0],
+      [colStart, maxRow - 1, 0, -1]
+    ]
+    console.log("After", rowStart, maxRow)
+    console.log("After", colStart, maxCol)
   }
-  return listHTML;
+
+
+  return arrayNew
 }
 
-renderApp(board1)
-
-function showInput(listId) {
-  var listNode = document.querySelector(`#${listId}`);
-  var addItemPlaceHolderNode = listNode.querySelector(`.add-item`);
-  var inputField = document.createElement("input");
-  inputField.placeholder = "Add a task 2";
-  inputField.id = "add-input";
-  listNode.replaceChild(inputField, addItemPlaceHolderNode);
-  inputField.focus();
-}
-
-function showListInput(listId) {
-  var listNode = document.querySelector(`#${listId}`);
-  var addItemPlaceHolderNode = listNode.querySelector(`.add-list`);
-  var inputField = document.createElement("input");
-  inputField.placeholder = "List name";
-  inputField.id = "add-list-input";
-  listNode.replaceChild(inputField, addItemPlaceHolderNode);
-  inputField.focus();
-}
-
-function assignSpecificFunction(e) {
-  if (e.target.classList.contains('add-item')) {
-    showInput(e.target.parentNode.id);
-
-  }
-  if (e.target.classList.contains('add-list')) {
-    showListInput(e.target.parentNode.id);
-  }
-}
-
-function assignKeyup(e) {
-  console.log(e.target.id)
-  if (e.target.id == 'add-input') {
-    addAItem(e);
-  }
-  if (e.target.id == 'add-list-input') {
-    addAListItem(e);
-  }
-}
-
-
-function addAItem(e) {
-  if (e.keyCode !== 13) {
-    return;
-  };
-
-  var ele = e.target;
-  var newText = ele.value;
-  if (ele.value == "") {
-    renderApp(board1);
-    return;
-  }
-  var listId = ele.parentNode.id;
-  var listIndex = ele.parentNode.dataset.index;
-  var newCard = new Card(newText);
-  board1.lists[listIndex].cards.push(newCard);
-  renderApp(board1);
-}
-
-function addAListItem(e) {
-  if (e.keyCode !== 13) {
-    return;
-  };
-  console.log(e.keyCode)
-  var ele = document.getElementById('add-list-input')
-  var newText = ele.value;
-  if (ele.value == "") {
-    renderApp(board1);
-    return;
-  }
-  var boardId = ele.parentNode.parentNode.id;
-  var newList = new List(newText);
-  board1.lists.push(newList);
-  renderApp(board1);
-}
-
-document.addEventListener('click', assignSpecificFunction)
-document.addEventListener('keyup', assignKeyup);
+snail(array)
