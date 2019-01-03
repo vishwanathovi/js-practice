@@ -17,6 +17,8 @@ function userCreator(name, score) {
   return obj;
 }
 
+var will = userCreator('Will', 3);
+
 //  Modetator - subset
 
 var moderatorFunctions = {

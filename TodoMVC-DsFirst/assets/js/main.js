@@ -1,6 +1,11 @@
 // Variables //
 
-// var itemArray = [{key:"key1",text:"Read 1984",done:false},{key:"key2",text:"Buy fruits",done:false},{key:"key3",text:"Call Kiran",done:true}];
+ var itemArray = [
+ {key:"key1",text:"Read 1984",done:false}
+ ,{key:"key2",text:"Buy fruits",done:false}
+ ,{key:"key3",text:"Call Kiran",done:true}
+ ];
+
 var itemArray = JSON.parse(localStorage.getItem("itemArray")) || [];
 var filterValue = "all"; // Filter value
 

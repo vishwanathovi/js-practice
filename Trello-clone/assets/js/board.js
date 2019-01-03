@@ -25,7 +25,8 @@ class Board {
     var mainDom = document.querySelector('main');
     mainDom.innerHTML = '';
     this.node.appendChild(this.titleNode)
-    this.node.appendChild(this.listsNode);
+    this.node.appendChild    var newBoard = new Board(boardInput.value);
+  (this.listsNode);
     mainDom.appendChild(this.node);
     this.listPlaceholderText.addEventListener('click', () => {
       handleListAdd(this)
@@ -33,5 +34,5 @@ class Board {
     this.listsNode.innerHTML = '';
     this.lists.forEach(item => this.listsNode.appendChild(item.node))
     this.listsNode.appendChild(this.listPlaceholder);
-  }
+  } 
 }
