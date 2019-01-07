@@ -1,0 +1,88 @@
+h3{
+  font-size: 30px;
+  padding:10px;
+  margin:0;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.header-form{
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  align-items: center;
+  grid-gap: 10px;
+}
+
+.uk-margin{
+  margin-top:20px;
+}
+
+.category-select{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap:10px;
+}
+
+.art-main-section{
+  display: grid;
+  grid-template-columns: 60vw 40vw;
+  height: 85vh;
+  justify-items: stretch;
+  padding:10px 0;
+}
+
+.art-image-main{
+  position: relative;
+  text-align: center;
+}
+
+.move{
+ position: absolute;
+ top:50%;
+ padding:20px; 
+ font-size: 20px;
+}
+
+.move:hover{
+  background: rgba(0,0,0,0.2);
+}
+
+.left-move{
+  left:0;
+  /*border-radius: 0 5px 5px 0;*/
+  display: none;
+}
+
+.right-move{
+  right:0;
+  /*border-radius: 5px 0 0 5px;*/
+}
+
+.art-main-section img{
+  max-height:85vh;
+}
+
+.title-main{
+  font-size: 26px;
+  padding:10px 0; 
+}
+
+.art-details{
+  padding:0 10px;
+}
+
+.art-details > *{
+  padding:10px 0;
+}
+
+.art-details > * > :first-child{
+  text-transform: capitalize;
+}
+
+
+

@@ -60,8 +60,8 @@ main{
 }
 
 main h1{
-	font-size: 36px;
-	padding: 30px;
+	font-size: 80px;
+	padding: 10px;
 	font-family: 'ZCOOL KuaiLe', cursive;
 }
 
@@ -73,6 +73,11 @@ main h1{
 
 .user1-section, .user2-section{
 	padding:10px 0;
+	display: none;
+}
+
+.winner-user{
+	border-top: 5px solid #008e1688;
 }
 
 .user1-section img, .user2-section img{
@@ -81,10 +86,14 @@ main h1{
 }
 
 .field-item{
-	padding: 5px 0;
+	padding: 2px 0;
 }
 
 .result-text{
+	padding: 10px 0;
+}
+
+.user-score{
 	padding: 10px 0;
 }
 

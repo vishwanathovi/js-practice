@@ -6,6 +6,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
 	<link rel="stylesheet" href="./assets/stylesheet/main.css">
 	<link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe" rel="stylesheet">
+
+	<!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.26/css/uikit.min.css" />
+
 </head>
 <body>
 	<main>
@@ -16,8 +20,11 @@
 					<input id="text-input" type="text">
 					<input type="submit">
 				</form>
-				<div class="user1-section">
+				<div class="user1-section uk-card-default">
 
+				</div>
+				<div class='user-score user1-score'>
+					
 				</div>
 			</div>
 			<div class='user2-main'>
@@ -25,14 +32,23 @@
 					<input id="text-input" type="text">
 					<input type="submit">
 				</form>
-				<div class="user2-section">
+				<div class="user2-section uk-card-default">
 
 				</div>
+				<div class='user-score user2-score'>
+					
+				</div>
+
 			</div>
 		</div>
 		<button class="compare-btn button-primary"> Compare </button>
 		<div class="result-text"></div>
 	</main>
 	<script src="./assets/js/main.js"></script>
+
+	<!-- UIkit JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.26/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.26/js/uikit-icons.min.js"></script>
+
 </body>
 </html>

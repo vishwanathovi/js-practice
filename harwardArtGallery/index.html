@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HarwardArtGallery</title>
+	
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="./assets/stylesheet/reset.css">
+
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+	<!-- UIkit CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.26/css/uikit.min.css" />
+	<link rel="stylesheet" href="./assets/stylesheet/main.css">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+</head>
+<body>
+	<main>
+		<header class="uk-background-primary">
+			<h3 class="">ArtGallery</h3>
+			<form action="" class="header-form">
+				<!-- Category selection -->
+				<div class="uk-margin">
+					<div uk-form-custom="target: > * > span:first-child">
+						<select class="category-select">
+							<option value="">Category</option>
+						</select>
+						<button class="uk-button uk-button-default" type="button" tabindex="-1">
+							<span></span>
+							<span uk-icon="icon: chevron-down"></span>
+						</button>
+					</div>
+				</div>
+
+				<!-- Century selection -->
+				<div class="uk-margin">
+					<div uk-form-custom="target: > * > span:first-child">
+						<select class="century-select">
+							<option value="">Century</option>
+						</select>
+						<button class="uk-button uk-button-default" type="button" tabindex="-1">
+							<span></span>
+							<span uk-icon="icon: chevron-down"></span>
+						</button>
+					</div>
+				</div>
+
+				<!--  Submit button  -->
+				<button class="search-btn uk-button uk-button-default" type="button">Submit</button>
+
+			</form>
+
+		</header>
+
+
+		<div class="art-main-section">
+			<div class="art-image-main">
+				<div class="move left-move">
+					<i class="fas fa-chevron-left"></i>
+				</div>
+				<img src="#" alt="" class="art-image">
+				<div class="move right-move">
+					<i class="fas fa-chevron-right"></i>
+				</div>
+			</div>
+			<div class="art-details">
+				<div class="title-main">
+					<span class="title-placeHolder">title:</span>
+					<span class="text-section title"></span>
+				</div>
+				<div class="description-main">
+					<span class="description-placeHolder">description:</span>
+					<span class="text-section description"></span>
+				</div>
+<!-- 				<div class="author-main">
+					<span class="author-placeHolder">author:</span>
+					<span class="text-section author"></span>
+				</div> -->
+				<div class="century-main">
+					<span class="century-placeHolder">century:</span>
+					<span class="text-section century"></span>
+				</div>
+				<div class="culture-main">
+					<span class="culture-placeHolder">culture:</span>
+					<span class="text-section culture"></span>
+				</div>
+				<div class="division-main">
+					<span class="division-placeHolder">division:</span>
+					<span class="text-section division"></span>
+				</div>
+				<div class="classification-main">
+					<span class="classification-placeHolder">classification:</span>
+					<span class="text-section classification"></span>
+				</div>
+				<div class="department-main">
+					<span class="department-placeHolder">department:</span>
+					<span class="text-section department"></span>
+				</div>
+			</div>
+		</div>
+		
+	</main>
+
+	<script src="./assets/js/cacheImages.js"></script>
+	<script src="./assets/js/auxilaryFunctions.js"></script>
+	<script src="./assets/js/fetch.js"></script>
+	<script src="./assets/js/updateDom.js"></script>
+	<script src="./assets/js/main.js"></script>
+
+	
+
+	<!-- Compiled and minified JavaScript -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+	
+	<!-- UIkit JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.26/js/uikit.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.26/js/uikit-icons.min.js"><
+	</body>
+	</html>
