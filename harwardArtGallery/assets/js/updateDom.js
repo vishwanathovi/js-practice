@@ -1,6 +1,7 @@
 var artImageSection = dq(".art-image")
 
 function updateDom(){
+	dq('.wait-spinner').style.display = "none";
 	var records = objectList.records.filter((record)=>record.primaryimageurl);
 	artImageSection.setAttribute('src', preloadArray[selectRecordIndex].src);
 	for (key in records[selectRecordIndex]){
@@ -13,6 +14,7 @@ function updateDom(){
 			detailSec.textContent = records[selectRecordIndex][key];
 		}
 	}
+		dq('.art-main-section').style.display = "grid";
 }
 
 function updateCategoryUl(){
@@ -51,12 +53,15 @@ function updateCenturyUl(selectedCategory){
 
 function clearDom(){
 	artImageSection.src = "#";
+	dq('.art-main-section').style.display = "none";
+	dq('.wait-spinner').style.display = "block";
 	for (key in records[selectRecordIndex]){
 		var detailSec = dq(`.${key}`);
 		if (detailSec){
 			detailSec.textContent = "";
 		}
 	}
+	dq('.no-item-display').style.display = "none";
 	return new Promise((resolve,reject)=>{resolve();})
 }
 

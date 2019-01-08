@@ -7,13 +7,18 @@ var records = [];
 var images;
 var preloadArray = [];
 
+// Initialization of the site
 updateCategoryUl();
 updateCenturyUl(selectedCategory);
-
 clearDom();
-fetchData().then(()=>{
-	preloadImage();
-	updateDom();
+fetchData(30).then(()=>{
+	if(records.length){
+		preloadImage();
+		checkValidityAndDisplay();
+		updateDom();
+	} else {
+		dq('.no-item-display').style.display = "block";
+	}
 })
 
 dq('.search-btn').addEventListener('click',(e)=>{
@@ -22,9 +27,13 @@ dq('.search-btn').addEventListener('click',(e)=>{
 	selectedCentury = dq('.century-select').value
 	clearDom();
 	fetchData().then(()=>{
-		preloadImage();
-		checkValidityAndDisplay();
-		updateDom();
+		if(records.length){
+			preloadImage();
+			checkValidityAndDisplay();
+			updateDom();
+		} else {
+			dq('.no-item-display').style.display = "block";
+		}
 	})
 })
 
@@ -51,5 +60,11 @@ dq('.right-move').addEventListener('click', ()=>{
 	checkValidityAndDisplay();
 })
 
-
+setInterval(()=>{
+	if (!navigator.onLine){
+		dq('.internet-message').style.top = "0px";
+	}	else {
+		dq('.internet-message').style.top = "-28px";
+	}
+}, 3000)
 

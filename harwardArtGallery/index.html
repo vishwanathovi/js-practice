@@ -3,11 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>HarwardArtGallery</title>
-	
-	<!-- Compiled and minified CSS -->
+
 	<link rel="stylesheet" href="./assets/stylesheet/reset.css">
 
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
 	<!-- UIkit CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.26/css/uikit.min.css" />
 	<link rel="stylesheet" href="./assets/stylesheet/main.css">
@@ -16,43 +14,49 @@
 
 </head>
 <body>
+	<header class="">
+		<img class="logo-img" src="./assets/media/harvardlogo.png" alt="">
+		<!-- <h3 class="">ArtGallery</h3> -->
+		<form action="" class="header-form">
+			<!-- Category selection -->
+			<div class="uk-margin">
+				<div uk-form-custom="target: > * > span:first-child">
+					<select class="uk-select category-select">
+						<option value="">Category</option>
+					</select>
+					<button class="uk-button uk-button-default" type="button" tabindex="-1">
+						<span></span>
+						<span uk-icon="icon: chevron-down"></span>
+					</button>
+				</div>
+			</div>
+
+			<!-- Century selection -->
+			<div class="uk-margin">
+				<div uk-form-custom="target: > * > span:first-child">
+					<select class="uk-select century-select">
+						<option value="">Century</option>
+					</select>
+					<button class="uk-button uk-button-default" type="button" tabindex="-1">
+						<span></span>
+						<span uk-icon="icon: chevron-down"></span>
+					</button>
+				</div>
+			</div>
+
+			<!--  Submit button  -->
+			<button class="search-btn uk-button uk-button-default" type="button">Submit</button>
+
+		</form>
+	</header>
 	<main>
-		<header class="uk-background-primary">
-			<h3 class="">ArtGallery</h3>
-			<form action="" class="header-form">
-				<!-- Category selection -->
-				<div class="uk-margin">
-					<div uk-form-custom="target: > * > span:first-child">
-						<select class="category-select">
-							<option value="">Category</option>
-						</select>
-						<button class="uk-button uk-button-default" type="button" tabindex="-1">
-							<span></span>
-							<span uk-icon="icon: chevron-down"></span>
-						</button>
-					</div>
-				</div>
+		<!-- No images found placeholder -->
+		<div class="no-item-display">No Artwork in the section :(</div>
 
-				<!-- Century selection -->
-				<div class="uk-margin">
-					<div uk-form-custom="target: > * > span:first-child">
-						<select class="century-select">
-							<option value="">Century</option>
-						</select>
-						<button class="uk-button uk-button-default" type="button" tabindex="-1">
-							<span></span>
-							<span uk-icon="icon: chevron-down"></span>
-						</button>
-					</div>
-				</div>
+		<!-- Internet down placeholder -->
+		<div class="internet-message">Internet not connected!</div>
 
-				<!--  Submit button  -->
-				<button class="search-btn uk-button uk-button-default" type="button">Submit</button>
-
-			</form>
-
-		</header>
-
+		<div class="wait-spinner" uk-spinner="ratio: 3"></div>
 
 		<div class="art-main-section">
 			<div class="art-image-main">
@@ -66,38 +70,37 @@
 			</div>
 			<div class="art-details">
 				<div class="title-main">
-					<span class="title-placeHolder">title:</span>
+					<!-- <span class="placeHolder title-placeHolder">title:</span> -->
 					<span class="text-section title"></span>
 				</div>
 				<div class="description-main">
-					<span class="description-placeHolder">description:</span>
+					<!-- <span class="placeHolder description-placeHolder">description:</span> -->
 					<span class="text-section description"></span>
 				</div>
-<!-- 				<div class="author-main">
-					<span class="author-placeHolder">author:</span>
-					<span class="text-section author"></span>
-				</div> -->
 				<div class="century-main">
-					<span class="century-placeHolder">century:</span>
+					<span class="placeHolder century-placeHolder">century:</span>
 					<span class="text-section century"></span>
 				</div>
 				<div class="culture-main">
-					<span class="culture-placeHolder">culture:</span>
+					<span class="placeHolder culture-placeHolder">culture:</span>
 					<span class="text-section culture"></span>
 				</div>
 				<div class="division-main">
-					<span class="division-placeHolder">division:</span>
+					<span class="placeHolder division-placeHolder">division:</span>
 					<span class="text-section division"></span>
 				</div>
 				<div class="classification-main">
-					<span class="classification-placeHolder">classification:</span>
+					<span class="placeHolder classification-placeHolder">classification:</span>
 					<span class="text-section classification"></span>
 				</div>
 				<div class="department-main">
-					<span class="department-placeHolder">department:</span>
+					<span class="placeHolder department-placeHolder">department:</span>
 					<span class="text-section department"></span>
 				</div>
 			</div>
+		</div>
+		<div class="credits-footer">
+			Made using <a href="https://www.harvardartmuseums.org">Harvard art museums</a> API. Made by <a href="https://github.com/vishwanathovi">Vishwa</a>.
 		</div>
 		
 	</main>

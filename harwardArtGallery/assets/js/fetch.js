@@ -1,11 +1,12 @@
-function fetchData(){
+function fetchData(size=20){
 	return new Promise((resolve,reject)=>{
 		var xml2 = new XMLHttpRequest;
 		var queryString = "apikey=56983d80-10df-11e9-bcad-2fc2bfa7450c" +
-		// "&sort=rank" +
+		"&sort=random" +
 		// "&sortorder=desc" +
 		"&fields=info,century,images,people,description,primaryimageurl,dated,url,culture,department,title,division,classification" +
-		"&size=10" +
+		// "&size=10" +
+		`&size=${size}` +
 		`${(selectedCategory!='default')? '&classification='+selectedCategory:'' }` +
 		`${(selectedCentury!='default')? '&century='+selectedCentury:'' }`
 
