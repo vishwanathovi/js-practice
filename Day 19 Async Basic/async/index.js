@@ -1,0 +1,80 @@
+/* CHALLENGE 1 */
+
+function sayHowdy() {
+  console.log('Howdy');
+}
+
+function testMe() {
+  setTimeout(sayHowdy, 0);
+  console.log('Partnah');
+}
+// After thinking it through, uncomment the following line to check your guess!
+// testMe(); // what order should these log out? Howdy or Partnah first?
+
+
+/* CHALLENGE 2 */
+
+function delayedGreet() {
+	setTimeout(()={console.log('welcome')},3000)
+  // ADD CODE HERE
+}
+// Uncomment the following line to check your work!
+// delayedGreet(); // should log (after 3 seconds): welcome
+
+
+/* CHALLENGE 3 */
+
+function helloGoodbye() {
+  // ADD CODE HERE
+  console.log('hello');
+  setTimeout(()={console.log('good bye')},3000)
+}
+// Uncomment the following line to check your work!
+// helloGoodbye(); // should log: hello // should also log (after 3 seconds): good bye
+
+
+/* CHALLENGE 4 */
+
+function brokenRecord() {
+  // ADD CODE HERE
+  setInterval(()={console.log('hi again')}, 1000)
+}
+// Uncomment the following line to check your work!
+// brokenRecord(); // should log (every second): hi again
+
+
+/* CHALLENGE 5 */
+
+function limitedRepeat() {
+  // ADD CODE HERE
+  var times = 0;
+  var repeatItem = setInterval(()=>{
+  	times+=1;
+  	console.log('hi for now')
+  	if (times==5){
+  		clearInterval(repeatItem)
+  	}
+  }, 1000)
+}
+// Uncomment the following line to check your work!
+// limitedRepeat(); // should log (every second, for 5 seconds): hi for now
+
+
+/* CHALLENGE 6 */
+
+function everyXsecsForYsecs(callback, interval, limit) {
+  // ADD CODE HERE
+  var times = 0;
+  var repeatItem = setInterval(()=>{
+  	times+=interval;
+  	callback()
+  	if (times==limit){
+  		clearInterval(repeatItem)
+  	}
+  }, interval)
+}
+// Uncomment the following lines to check your work!
+function theEnd() {
+  console.log('This is the end!');
+}
+// everyXsecsForYsecs(theEnd, 2, 20); // should invoke theEnd function every 2 seconds, for 20 seconds): This is the end!
