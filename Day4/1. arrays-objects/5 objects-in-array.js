@@ -4,32 +4,33 @@ var gunter = {
   name: "Gunter",
   origin: "Adventure Time",
   canFly: false,
-  sayHello: function () {
+  sayHello: function() {
     console.log("QUACK!!!");
-  }
+  },
 };
 
 var ramon = {
   name: "Ramón",
   origin: "Happy Feet",
   canFly: true,
-  sayHello: function () {
+  sayHello: function() {
     console.log("Estoy encantado de conocerle.");
-  }
+  },
 };
 
 var fred = {
   name: "Fred",
   origin: "Sitting Ducks",
   canFly: false,
-  sayHello: function () {
+  sayHello: function() {
     console.log("Hi there!");
-  }
+  },
 };
+
 
 // 1.Create a new variable named penguins and set it equal to an array that lists these three penguins! (Hint: remember you can put variable names inside an array, not just hard-coded values! And remember that variable names don't have quotes around them.)
 
-var penguins = [gunter,ramon,fred];
+var penguins = [gunter, ramon, fred];
 
 // 2. Access the first penguin in the list and print it to the console using console.log() -- notice that you can see all the properties and methods of that object listed in the console! (Hint: remember that array indexes start counting at 0, not 1!)
 
@@ -41,7 +42,7 @@ var secondPenguin = penguins[1];
 
 // 4 Print to the console the name of the last penguin in the list.
 
-console.log(penguins[penguins.length-1]);
+console.log(penguins[penguins.length - 1]);
 
 // 5. Remember the penguin you created earlier, with the variable name of myPenguin? Add that penguin to the end of the penguins array!
 
@@ -62,19 +63,19 @@ penguins[0].sayHello();
 
 // 9.Write a for loop to iterate through every penguin in the array and print the value of each penguin's name property to the console.
 
-for (var item of penguins){
+for (var item of penguins) {
   console.log(item.name);
 }
 
 // 10.Write a for loop to call the sayHello method of every penguin in the array!
 
-for (var item of penguins){
+for (var item of penguins) {
   item.sayHello();
 }
 
 // 11.Write a for loop to iterate through every penguin in the array, and add a new property to each penguin called numberOfFeet with the value 2
 
-for (var item of penguins){
+for (var item of penguins) {
   item.numberOfFeet = 2;
 }
 
@@ -82,6 +83,8 @@ for (var item of penguins){
 // 12.Write another for loop to iterate through every penguin in the array, and for each penguin that can fly, print to the console a message containing the penguin's name and " can fly!" -- for example, "Gunter can fly!" or "Ramón can fly!" (Don't do anything for the penguins that cannot fly.)
 
 
-for (var item of penguins){
-  if (item.canFly){console.log(`${item.name} can fly!`);}
+for (var item of penguins) {
+  if (item.canFly) {
+    console.log(`${item.name} can fly!`);
+  }
 }

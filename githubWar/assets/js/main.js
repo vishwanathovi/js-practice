@@ -59,7 +59,7 @@ function handleUserFetch(e){
 		window[userID] = new User(item.login, item.avatar_url, item.name, item.public_repos, item.followers, item.following)
 		userSection.innerHTML = "";
 		userSection.style.display = 'block';
-		userSection.appendChild(window[userID].node);	
+		userSection.appendChild(window[userID].node);
 	}, (message)=>{ 
 		userSection.innerHTML = "";
 		document.querySelector(`.${userID}-score`).textContent =  message 
