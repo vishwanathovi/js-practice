@@ -23,10 +23,10 @@ class Board {
   }
   render() {
     var mainDom = document.querySelector('main');
+    // var newBoard = new Board(boardInput.value);
     mainDom.innerHTML = '';
     this.node.appendChild(this.titleNode)
-    this.node.appendChild    var newBoard = new Board(boardInput.value);
-  (this.listsNode);
+    this.node.appendChild(this.listsNode);
     mainDom.appendChild(this.node);
     this.listPlaceholderText.addEventListener('click', () => {
       handleListAdd(this)
