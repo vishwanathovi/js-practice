@@ -26,6 +26,7 @@ class List {
       newCard ? this.cards.push(newCard) : null;
     })
   }
+  
   render() {
     var mainDom = document.querySelector(`.${this.title}`);
     this.cardAddPlaceholder.addEventListener('click', () => {
