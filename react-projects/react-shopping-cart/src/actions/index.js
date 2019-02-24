@@ -2,7 +2,6 @@ export const HANDLE_SIZE_FILTER = 'HANDLE_SIZE_FILTER';
 export const HANDLE_ORDER_CHANGE = 'HANDLE_ORDER_CHANGE';
 export const UPDATE_AVAILABLE_SIZES = 'UPDATE_AVAILABLE_SIZES';
 export const HANDLE_CART_ADD = 'HANDLE_CART_ADD';
-export const TOGGLE_CART_DISPLAY = 'TOGGLE_CART_DISPLAY';
 export const HANDLE_CART_REMOVE = 'HANDLE_CART_REMOVE';
 export const DISPLAY_PRODUCTS = 'DISPLAY_PRODUCTS';
 
@@ -51,12 +50,6 @@ export function handleCartAdd(product){
 	return {
 		type: HANDLE_CART_ADD,
 		product
-	}
-}
-
-export function toggleCartDisplay(){
-	return {
-		type: TOGGLE_CART_DISPLAY
 	}
 }
 

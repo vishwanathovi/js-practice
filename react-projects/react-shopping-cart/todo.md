@@ -4,12 +4,12 @@
 	- Cart total need to be added
 
 2. CSS improvements
-	- Product card display improvement
+	- Product card display improvement - Done
 	- Cart product card improvement
 
 Next phase:
 1. Adopt redux part into the application - Done
-2. Clean-up the code and comment properly 
+2. Clean-up the code and comment properly - Done
 3. Apply basic routing to display individual products and cart page
 
 
@@ -17,9 +17,15 @@ Learnings:
 1. setState is always async
 2. Never use normal functions within react components. This will messup "this". 
 
+Still needs to be discussed:
+1. Avoiding Product, ProductInner issue & Key issue faced
+
+# React-redux pending things:
+1. Create Shelf component and place Products, Order & Count within that
+2. 
 
 
-# CSS Pending things:
+# CSS pending things:
 1. Cart 
 	- Product details section
 			- Clean-up structuring
@@ -37,5 +43,10 @@ Learnings:
 	- Make the cart supportive in the mobile devices
 	- Make the product cards to look good in mobile view
 
-3. Other
+3. Main section
 	- Fix product length issue in tablet view
+	- Split the overall space according to % rather than Grid approach
+
+4. Structuring
+	- Convert all code to SCSS
+	- Split the code according to the components

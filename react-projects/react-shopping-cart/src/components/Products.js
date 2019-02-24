@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 // import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { connect } from 'react-redux';
 import Product from './Product';
+import { handleCartAdd } from './../actions/index';
 
 class Products extends Component {
+
+	handleCartAdd = (product) => {
+    this.props.dispatch(handleCartAdd(product))
+  }
+
 	render() {
+		let {products} = this.props;
+
 		return (
 			<div className="Products">
 				{ 
-					this.props.products.map(product=>{
-						return (<div className="Product" key={product.id} onClick={()=>this.props.onClick(product)}>
+					products.map(product=>{
+						return (<div className="Product" key={product.id} onClick={()=>this.handleCartAdd(product)}>
 											<Product product={product}/>
 										</div>) 
 					})
@@ -18,4 +27,10 @@ class Products extends Component {
 	}
 }
 
-export default Products;
+const mapStateToProps = (state) => {
+	return {
+		products:state.filteredProducts
+	}
+}
+
+export default connect(mapStateToProps)(Products);
