@@ -1,3 +1,13 @@
+import {
+	HANDLE_SIZE_FILTER,
+	HANDLE_ORDER_CHANGE,
+	UPDATE_AVAILABLE_SIZES,
+	HANDLE_CART_ADD,
+	TOGGLE_CART_DISPLAY,
+	HANDLE_CART_REMOVE
+} from './../actions'
+
+
 var products = {
   "products": [
     {
@@ -253,9 +263,11 @@ const initState = {
 
 export default function rootReducer(state = initState, action) {
 	switch (action.type) {
-		case 'HANDLE_SIZE_FILTER': {
+		case HANDLE_SIZE_FILTER: {
 			let sizes = [...state.selectedFilter];
     	let sizeIndex = state.selectedFilter.indexOf(action.size);
+    	let orderValue = state.orderValue;
+
     	sizeIndex===-1? sizes.push(action.size): sizes.splice(sizeIndex,1);
 
     	let products = [...state.products];
@@ -264,8 +276,7 @@ export default function rootReducer(state = initState, action) {
 	        return item.availableSizes.some(size=>sizes.includes(size))
 	      })
 	    }
-
-	    let orderValue = document.querySelector('.order-select').value;
+	    console.log('within filter', orderValue)
 
 	    if (orderValue === 'lh' ){
 	      products.sort((p1,p2)=>p1.price-p2.price)
@@ -278,10 +289,70 @@ export default function rootReducer(state = initState, action) {
 	    	filteredProducts: products,
 	    	selectedFilter: sizes
 	    }
+		} 
+		case HANDLE_ORDER_CHANGE: {
 
+			let products = [...state.filteredProducts];
+			let orderValue = action.order;
+
+	    if (orderValue === 'lh' ){
+	      products.sort((p1,p2)=>p1.price-p2.price)
+	    } else if (orderValue === 'hl'){
+	      products.sort((p1,p2)=>p2.price-p1.price)
+	    }
+
+	    return{
+	    	...state,
+	    	filteredProducts: products,
+	    	orderValue: orderValue
+	    }
+		}
+		case UPDATE_AVAILABLE_SIZES: {
+			let products = [...state.products];
+	    let sizes = products.reduce((acc,item)=>{
+	      return acc.concat(item.availableSizes);       
+	    },[]).filter((item,index,array)=>array.indexOf(item)===index);
+	    
+	    return {
+	    	...state,
+	    	availableSizes: sizes
+	    }
+		}
+		case HANDLE_CART_ADD: {
+			let product = action.product;
+			let cartProducts = [...state.cartProducts];
+	    let productIndex = cartProducts.findIndex(item=>item.id===product.id); 
+
+	    if (productIndex===-1){
+	        product.quantity = 1;
+	        cartProducts.push(product)
+	    } else {
+	        cartProducts[productIndex].quantity++;
+	    }
+
+	    return {
+	    	...state,
+	    	cartProducts
+	    }
+		}
+		case TOGGLE_CART_DISPLAY: {
+			return {
+				...state,
+				cartDisplay: !state.cartDisplay
+			}
+		}
+		case HANDLE_CART_REMOVE: {
+			let cartProducts = [...state.cartProducts];
+	    cartProducts = cartProducts.filter(item=>item.id!==action.id);
+	    return {
+	    	...state,
+	    	cartProducts
+	    }
 		}
 		default:
 			return state;
-			break;
 	}
 }
+
+
+

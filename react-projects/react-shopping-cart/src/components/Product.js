@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Product extends Component {
 	render() {
-		const { product } = this.props;
+		// const { product } = this.props;
 		return (
 			<div className="Product-inner">
 				<img className="product-img" src={"./products/"+ this.props.product.sku + "_1.jpg"} alt="product-primary"/>
