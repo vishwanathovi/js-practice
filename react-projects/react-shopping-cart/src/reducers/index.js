@@ -267,26 +267,11 @@ export default function rootReducer(state = initState, action) {
 		case HANDLE_SIZE_FILTER: {
 			let sizes = [...state.selectedFilter];
     	let sizeIndex = state.selectedFilter.indexOf(action.size);
-    	let orderValue = state.orderValue;
 
     	sizeIndex===-1? sizes.push(action.size): sizes.splice(sizeIndex,1);
-
-    	// let products = [...state.products];
-	    // if (sizes.length!==0){
-	    //   products = products.filter(item=>{
-	    //     return item.availableSizes.some(size=>sizes.includes(size))
-	    //   })
-	    // }
-
-	    // if (orderValue === 'lh' ){
-	    //   products.sort((p1,p2)=>p1.price-p2.price)
-	    // } else if (orderValue === 'hl'){
-	    //   products.sort((p1,p2)=>p2.price-p1.price)
-	    // }
-
+      
 	    return{
 	    	...state,
-	    	// filteredProducts: products,
 	    	selectedFilter: sizes
 	    }
 		} 

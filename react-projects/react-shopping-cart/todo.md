@@ -36,3 +36,6 @@ Learnings:
 2. Responsive
 	- Make the cart supportive in the mobile devices
 	- Make the product cards to look good in mobile view
+
+3. Other
+	- Fix product length issue in tablet view

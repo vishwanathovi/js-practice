@@ -6,10 +6,8 @@ import Products from './components/Products';
 // import Product from './components/Product';
 import Sizes from './components/Sizes';
 import CartProducts from './components/CartProducts';
-import Spinner from './components/spinner/Spinner';
-import {HandleSizeFilter2,
-        handleOrderChange,
-        UpdateAvailableSizes,
+// import Spinner from './components/spinner/Spinner';
+import { UpdateAvailableSizes,
         handleCartAdd, 
         toggleCartDisplay,
         handleCartRemove,
