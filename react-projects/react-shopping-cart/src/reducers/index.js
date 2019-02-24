@@ -1,165 +1,3 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { connect } from 'react-redux';
-import './App.css';
-import Products from './components/Products';
-import Product from './components/Product';
-import Sizes from './components/Sizes';
-import CartProducts from './components/CartProducts';
-import HandleSizeFilter2 from './actions/index';
-// import tpd from './helperFunctions.js';
-
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      products: products.products,
-      availableSizes: [],
-      filteredProducts: products.products,
-      selectedFilter: [],
-      orderValue: '',
-      cartProducts: [],
-      cartDisplay: false
-    }
-  }
-
-  componentDidMount() {
-    this.updateFilterList();
-  }
-
-  updateFilterList = () => {
-    let products = [...this.state.products];
-    let sizes = products.reduce((acc,item)=>{
-      return acc.concat(item.availableSizes);       
-    },[]).filter((item,index,array)=>array.indexOf(item)===index);
-    this.setState({
-      availableSizes: sizes
-    })
-  }
-
-  HandleSizeFilter = (size) => { 
-    this.props.dispatch(HandleSizeFilter2(size))
-    // let sizes = [...this.state.selectedFilter];
-    // let sizeIndex = this.state.selectedFilter.indexOf(size);
-
-    // sizeIndex===-1? sizes.push(size): sizes.splice(sizeIndex,1);
-    
-    // this.updateFilterProducts(sizes);
-    // Currently passing filtered sizes from here. Still needs to be discussed
-  }
-
-  updateFilterProducts = (sizes = this.state.selectedFilter) =>{
-    let products = [...this.state.products];
-    if (sizes.length!==0){
-      products = products.filter(item=>{
-        return item.availableSizes.some(size=>sizes.includes(size))
-      })
-    }
-
-    let orderValue = document.querySelector('.order-select').value;
-
-    if (orderValue === 'lh' ){
-      products.sort((p1,p2)=>p1.price-p2.price)
-    } else if (orderValue === 'hl'){
-      products.sort((p1,p2)=>p2.price-p1.price)
-    }
-
-
-    this.setState({
-        filteredProducts: products,
-        selectedFilter: sizes,
-        orderValue: orderValue
-    })
-  }
-
-  handleCartAdd = (product) => {
-    let cartProducts = [...this.state.cartProducts];
-    let productIndex = cartProducts.findIndex(item=>item.id===product.id); 
-
-    if (productIndex===-1){
-        product.quantity = 1;
-        cartProducts.push(product)
-    } else {
-        cartProducts[productIndex].quantity++;
-    }
-
-    this.setState({
-      cartProducts: cartProducts
-    })
-  }
-
-  toggleCartDisplay = () => {
-    this.setState({
-      cartDisplay: !this.state.cartDisplay
-    })
-  }
-
-  handleCartRemove = (id) => {
-    let cartProducts = [...this.state.cartProducts];
-    cartProducts = cartProducts.filter(item=>item.id!==id);
-    this.setState({
-      cartProducts: cartProducts
-    })
-  }
-
-  render() {
-    const { products, filteredProducts } = this.props;
-    console.log(products, 'inside app.js');
-    let productsLength = this.state.filteredProducts.length;
-    let totalItemsInCart = this.state.cartProducts.reduce((acc,item)=>acc+=item.quantity,0)
-
-    return (
-      <div className="App">
-        <div className="left-main">
-            <Sizes sizes={this.state.availableSizes} onClick={this.HandleSizeFilter}/>
-        </div>  
-        <div className="right-main">
-          <div className="right-top">
-            <div className="products-selected">{productsLength || 'No'} Product{productsLength>1? 's':''} selected</div>
-            <div className="product-order">
-              Order By: 
-              <select className="order-select" onChange={()=>{this.updateFilterProducts()}}>
-                <option value="">Select</option>
-                <option value="lh">Low to High</option>
-                <option value="hl">High to Low</option>
-              </select>
-            </div>
-          </div>
-         <Products products={filteredProducts} onClick={this.handleCartAdd}/>
-        </div>
-        <div className={`cart-main ${this.state.cartDisplay? '': 'hide'}`}>
-          <div className="cart-icon" onClick={this.toggleCartDisplay}>
-            <i className="fas fa-cart-plus"></i>
-            <div className="cart-count-icon">{totalItemsInCart}</div>
-          </div>
-          <div className="cart-section">
-            <div className="cart-section-icon">
-              Cart
-              <i className="fas fa-cart-plus"></i>
-            </div>
-            <div className="cart-products">
-              <CartProducts products={this.state.cartProducts} onClick={this.handleCartRemove}/>
-            </div>
-            <div className="cart-checkout">
-              <button className="cart-checkout-btn">Checkout</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    products: state.products,
-    filteredProducts: state.filteredProducts
-  }
-}
-
-export default connect(mapStateToProps)(App);
-
-
 var products = {
   "products": [
     {
@@ -400,4 +238,50 @@ var products = {
       "isFreeShipping": true
     }
   ]
+}
+
+
+const initState = {
+    products: products.products,
+    availableSizes: [],
+    filteredProducts: products.products,
+    selectedFilter: [],
+    orderValue: '',
+    cartProducts: [],
+    cartDisplay: false
+}
+
+export default function rootReducer(state = initState, action) {
+	switch (action.type) {
+		case 'HANDLE_SIZE_FILTER': {
+			let sizes = [...state.selectedFilter];
+    	let sizeIndex = state.selectedFilter.indexOf(action.size);
+    	sizeIndex===-1? sizes.push(action.size): sizes.splice(sizeIndex,1);
+
+    	let products = [...state.products];
+	    if (sizes.length!==0){
+	      products = products.filter(item=>{
+	        return item.availableSizes.some(size=>sizes.includes(size))
+	      })
+	    }
+
+	    let orderValue = document.querySelector('.order-select').value;
+
+	    if (orderValue === 'lh' ){
+	      products.sort((p1,p2)=>p1.price-p2.price)
+	    } else if (orderValue === 'hl'){
+	      products.sort((p1,p2)=>p2.price-p1.price)
+	    }
+
+	    return{
+	    	...state,
+	    	filteredProducts: products,
+	    	selectedFilter: sizes
+	    }
+
+		}
+		default:
+			return state;
+			break;
+	}
 }

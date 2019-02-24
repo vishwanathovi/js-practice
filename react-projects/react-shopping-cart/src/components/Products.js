@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Product from './Product';
 
 class Products extends Component {
@@ -7,7 +8,7 @@ class Products extends Component {
 			<div className="Products">
 				{ 
 					this.props.products.map(product=>{
-						return (<div className="Product" key={product.id}>
+						return (<div className="Product" key={product.id} onClick={()=>this.props.onClick(product)}>
 											<Product product={product}/>
 										</div>) 
 					})
