@@ -4,6 +4,7 @@ export const UPDATE_AVAILABLE_SIZES = 'UPDATE_AVAILABLE_SIZES';
 export const HANDLE_CART_ADD = 'HANDLE_CART_ADD';
 export const TOGGLE_CART_DISPLAY = 'TOGGLE_CART_DISPLAY';
 export const HANDLE_CART_REMOVE = 'HANDLE_CART_REMOVE';
+export const DISPLAY_PRODUCTS = 'DISPLAY_PRODUCTS';
 
 
 export function UpdateAvailableSizes(){
@@ -26,6 +27,26 @@ export function handleOrderChange(order){
 	}
 }
 
+export function displayProducts(){
+	return {
+		type:DISPLAY_PRODUCTS
+	}
+}
+
+export function filterAsync(size){
+  return function(dispatch) {
+    dispatch(HandleSizeFilter2(size));
+    dispatch(displayProducts());
+  }
+}
+
+export function orderAsync(order){
+	return function(dispatch) {
+    dispatch(handleOrderChange(order));
+    dispatch(displayProducts());
+  }
+}
+
 export function handleCartAdd(product){
 	return {
 		type: HANDLE_CART_ADD,
@@ -45,8 +66,6 @@ export function handleCartRemove(id){
 		id
 	}
 }
-
-
 
 
 

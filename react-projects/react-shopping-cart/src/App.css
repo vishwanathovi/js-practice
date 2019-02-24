@@ -1,7 +1,7 @@
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
-*/
+*/ 
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -55,6 +55,11 @@ table {
 
 body{
   padding: 60px;
+  font-family: 'Lato', sans-serif;
+}
+
+small{
+  font-size: 12px;
 }
 
 .App{
@@ -62,10 +67,9 @@ body{
   grid-template-columns: 1fr 4fr;
 }
 
-
 .Products{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
   grid-gap:5px;
 }
 
@@ -77,6 +81,8 @@ body{
 .Product-inner{
   display: grid;
   grid-template-columns: 1fr;
+  position: relative;
+  text-align: center;
 }
 
 .Product:hover{
@@ -84,40 +90,108 @@ body{
 }
 
 .Product:hover> .Product-inner button{
-  background: #eee;
+  background: #eabf00;
 }
 
 .Product-inner .product-img{
   width:100%;
 }
 
+.Product-inner button{
+  background:#000;
+  color:white;
+  border-radius: 0;
+  box-shadow: none;
+  text-transform: capitalize;
+  border: none;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.Product-inner .product-name{
+  font-size: 16px;
+  padding-top:15px;
+}
+
+.product-dollars{
+  font-size: 24px;
+  font-weight: 600;
+  color:#333;
+  padding-left: 5px;
+  letter-spacing: 1px;
+}
+
+.product-cents{
+  letter-spacing: 1px;
+}
+
+.product-installments{
+  color:#555;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.free-shipping{
+  position: absolute;
+  top:0;
+  right:0;
+  background: #111;
+  padding: 5px 5px;
+  color: #fff;
+  font-size: 10px;
+}
+
+.left-main .size-header{
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
 .Sizes{
-  display: grid;
-  grid-template-columns: repeat(5,1fr);
-  grid-gap: 5px;
-  padding: 10px;
+  /*display: grid;*/
+  /*grid-template-columns: repeat(auto-fit,minmax(50px,1fr));*/
+  /*grid-gap: 4px;*/
+  /*padding: 10px;*/
+
+  /*display: flex;*/
+
+}
+
+.Size{
+  display: inline-block;
+  margin:3px;
 }
 
 .Size-inner{
+  display: inline-block;
   width: 40px;
   height: 40px;
-  background: #ddd;
+  background: #eee;
   border-radius: 50%;
   display: grid;
   align-items:center;
   justify-content: center;
   color:#333;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
 }
 
 .Size-inner.selected{
-  background: #bbb;
+  background: #aaa;
 }
 
 .right-top{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  font-size: 14px;
+}
+
+.order-select{
+  width: 160px;
+  margin-left: 10px;
+  margin-bottom: 0;
 }
 
 .cart-main{
@@ -127,17 +201,19 @@ body{
   display: grid;
   grid-template-columns: auto auto;
   width:405px;
+  transition: all 0.4s ease-in-out;
 }
 
 .cart-main.hide{
   right: -350px;
+  transition: all 0.4s ease-in-out;
 }
 
 .cart-icon{
   width: 55px;
   height: 55px;
   color:white;
-  background: #222;
+  background: #111;
   display: grid;
   align-items: center;
   justify-content: center;
@@ -145,36 +221,58 @@ body{
 }
 
 .cart-icon i{
-  font-size: 30px;
+  font-size: 24px;
 }
 
 .cart-count-icon{
-  font-size:14px;
+  font-size:12px;
   color:#333;
   font-weight: 600;
   position: absolute;
   bottom:0;
   left:0;
+  margin:4px;
   /*padding:10px;*/
-  width: 25px;
-  height: 25px;
+  width: 22px;
+  height: 22px;
   background: #FFD700;
   border-radius: 50%;
   display: grid;
   align-items: center;
   justify-content: center;
 }
-
+  
 .cart-section{
   width:350px;
   height: 100vh;
-  background: #222;
+  background: #111;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
 }
 
+.cart-section-icon-inner{
+  position: relative;
+}
+
+.cart-count-icon2{
+  font-size:12px;
+  color:#333;
+  font-weight: 600;
+  position: absolute;
+  bottom:-10px;
+  left:-15px;
+  margin:4px;
+  /*padding:10px;*/
+  width: 24px;
+  height: 24px;
+  background: #FFD700;
+  border-radius: 50%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
 
 .CartProduct-inner{
   display: grid;
@@ -183,6 +281,7 @@ body{
   align-items: center;
   padding: 10px;
   position: relative;
+  border-bottom: 1px solid #666;
 }
 
 .cartRemove{
@@ -223,15 +322,30 @@ body{
 .cart-products{
   overflow-x:overlay;
   text-align: start;
+  padding-bottom: 150px;
+}
+
+.cart-products::-webkit-scrollbar-thumb {
+  background: red; 
+  height:50%;
+}
+
+.cart-product-placeholder{
+  color: white;
+  padding:60px 30px;
+  text-align: center;
+  line-height: 2;
 }
 
 
 .cart-checkout{
-  /*position: absolute;
-  bottom: 0;*/
+  position: absolute;
+  bottom: 0;
   padding:40px;
   width: 100%;
   border-top: 1px solid #999;
+  z-index: 10;
+  background: #111;
 }
 
 .cart-checkout-btn{

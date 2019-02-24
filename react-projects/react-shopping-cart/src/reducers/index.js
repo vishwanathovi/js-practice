@@ -4,7 +4,8 @@ import {
 	UPDATE_AVAILABLE_SIZES,
 	HANDLE_CART_ADD,
 	TOGGLE_CART_DISPLAY,
-	HANDLE_CART_REMOVE
+	HANDLE_CART_REMOVE,
+  DISPLAY_PRODUCTS
 } from './../actions'
 
 
@@ -270,43 +271,66 @@ export default function rootReducer(state = initState, action) {
 
     	sizeIndex===-1? sizes.push(action.size): sizes.splice(sizeIndex,1);
 
-    	let products = [...state.products];
-	    if (sizes.length!==0){
-	      products = products.filter(item=>{
-	        return item.availableSizes.some(size=>sizes.includes(size))
-	      })
-	    }
-	    console.log('within filter', orderValue)
+    	// let products = [...state.products];
+	    // if (sizes.length!==0){
+	    //   products = products.filter(item=>{
+	    //     return item.availableSizes.some(size=>sizes.includes(size))
+	    //   })
+	    // }
 
-	    if (orderValue === 'lh' ){
-	      products.sort((p1,p2)=>p1.price-p2.price)
-	    } else if (orderValue === 'hl'){
-	      products.sort((p1,p2)=>p2.price-p1.price)
-	    }
+	    // if (orderValue === 'lh' ){
+	    //   products.sort((p1,p2)=>p1.price-p2.price)
+	    // } else if (orderValue === 'hl'){
+	    //   products.sort((p1,p2)=>p2.price-p1.price)
+	    // }
 
 	    return{
 	    	...state,
-	    	filteredProducts: products,
+	    	// filteredProducts: products,
 	    	selectedFilter: sizes
 	    }
 		} 
+
 		case HANDLE_ORDER_CHANGE: {
 
-			let products = [...state.filteredProducts];
+			// let products = [...state.filteredProducts];
 			let orderValue = action.order;
 
-	    if (orderValue === 'lh' ){
-	      products.sort((p1,p2)=>p1.price-p2.price)
-	    } else if (orderValue === 'hl'){
-	      products.sort((p1,p2)=>p2.price-p1.price)
-	    }
+	    // if (orderValue === 'lh' ){
+	    //   products.sort((p1,p2)=>p1.price-p2.price)
+	    // } else if (orderValue === 'hl'){
+	    //   products.sort((p1,p2)=>p2.price-p1.price)
+	    // }
 
 	    return{
 	    	...state,
-	    	filteredProducts: products,
+	    	// filteredProducts: products,
 	    	orderValue: orderValue
 	    }
 		}
+    case DISPLAY_PRODUCTS: {
+
+      let products = [...state.products];
+      let sizes = state.selectedFilter;
+      let orderValue = state.orderValue;
+      if (sizes.length!==0){
+        products = products.filter(item=>{
+          return item.availableSizes.some(size=>sizes.includes(size))
+        })
+      }
+
+      if (orderValue === 'lh' ){
+        products.sort((p1,p2)=>p1.price-p2.price)
+      } else if (orderValue === 'hl'){
+        products.sort((p1,p2)=>p2.price-p1.price)
+      }
+
+      return {
+        ...state,
+        filteredProducts: products
+      }
+    }
+
 		case UPDATE_AVAILABLE_SIZES: {
 			let products = [...state.products];
 	    let sizes = products.reduce((acc,item)=>{

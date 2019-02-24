@@ -6,13 +6,17 @@ import Products from './components/Products';
 // import Product from './components/Product';
 import Sizes from './components/Sizes';
 import CartProducts from './components/CartProducts';
+import Spinner from './components/spinner/Spinner';
 import {HandleSizeFilter2,
         handleOrderChange,
         UpdateAvailableSizes,
         handleCartAdd, 
         toggleCartDisplay,
-        handleCartRemove
+        handleCartRemove,
+        filterAsync,
+        orderAsync
       } from './actions/index';
+// import {fixFormat} from './services/helperFunctions.js';
 
 class App extends Component {
   componentDidMount() {
@@ -24,11 +28,11 @@ class App extends Component {
   }
 
   HandleSizeFilter = (size) => { 
-    this.props.dispatch(HandleSizeFilter2(size));
+    this.props.dispatch(filterAsync(size));
   }
 
   HandleOrderChange = (event) => {
-    this.props.dispatch(handleOrderChange(event.target.value))
+    this.props.dispatch(orderAsync(event.target.value))
   }
 
   handleCartAdd = (product) => {
@@ -51,13 +55,14 @@ class App extends Component {
     return (
       <div className="App">
         <div className="left-main">
+            <div className="size-header">Sizes:</div> 
             <Sizes sizes={availableSizes} onClick={this.HandleSizeFilter}/>
         </div>  
         <div className="right-main">
           <div className="right-top">
             <div className="products-selected">{productsLength || 'No'} Product{productsLength>1? 's':''} selected</div>
             <div className="product-order">
-              Order By: 
+              Order By:
               <select className="order-select" onChange={this.HandleOrderChange}>
                 <option value="">Select</option>
                 <option value="lh">Low to High</option>
@@ -65,20 +70,35 @@ class App extends Component {
               </select>
             </div>
           </div>
+        {/* <Spinner /> */}
          <Products products={filteredProducts} onClick={this.handleCartAdd}/>
         </div>
         <div className={`cart-main ${cartDisplay? '': 'hide'}`}>
-          <div className="cart-icon" onClick={this.toggleCartDisplay}>
-            <i className="fas fa-cart-plus"></i>
-            <div className="cart-count-icon">{totalItemsInCart}</div>
-          </div>
+
+        <div className="cart-icon" onClick={this.toggleCartDisplay}>
+          {
+            !cartDisplay? (
+            <div>
+              <i className="fas fa-cart-plus"></i>
+              <div className="cart-count-icon">{totalItemsInCart}</div>
+            </div>
+            ): <i className="fas fa-times"></i>
+          }
+        </div>
           <div className="cart-section">
             <div className="cart-section-icon">
               Cart
-              <i className="fas fa-cart-plus"></i>
+              <span className="cart-section-icon-inner">
+                <i className="fas fa-cart-plus"></i>
+                <div className="cart-count-icon2">{totalItemsInCart}</div>
+              </span>
             </div>
             <div className="cart-products">
-              <CartProducts products={cartProducts} onClick={this.handleCartRemove}/>
+            { 
+              cartProducts.length? <CartProducts products={cartProducts} onClick={this.handleCartRemove}/>:
+              <div className="cart-product-placeholder">
+              Please add some products into the Cart <br/>: )</div>
+            }
             </div>
             <div className="cart-checkout">
               <button className="cart-checkout-btn">Checkout</button>
