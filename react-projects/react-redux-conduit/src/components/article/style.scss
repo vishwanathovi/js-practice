@@ -1,0 +1,41 @@
+.Article{
+	padding:15px;
+	border-bottom: 0.5px solid #eee;
+
+	.ArticleHeader{
+		display: flex;
+		justify-content: space-between;
+		padding: 10px 0;
+		align-items: center;
+
+		.username{
+			padding:5px 0;
+
+			i{
+				border:1px solid #999;
+				border-radius: 50%;
+				padding:10px;
+			}
+		}
+
+		.Favorite{
+			border: 0.5px solid #5cb85c;
+			border-radius: 2px;
+			padding:8px 5px;
+
+			i{
+				padding:0 5px;
+			}
+		}
+	}
+
+	.Article-title{
+		padding:10px 0;
+		font-size: 24px;
+	}
+
+	.Article-description{
+		color:#999;
+	}
+
+}
